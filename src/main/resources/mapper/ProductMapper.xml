@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.ProductDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.demo.entities.Product">
+        <id column="id" property="id" />
+        <result column="img_path" property="imgPath" />
+        <result column="price" property="price" />
+        <result column="details" property="details" />
+        <result column="is_hot" property="isHot" />
+        <result column="is_new" property="isNew" />
+        <result column="is_pick" property="isPick" />
+        <result column="is_sexy" property="isSexy" />
+        <result column="is_couples" property="isCouples" />
+        <result column="is_guess_you_like" property="isGuessYouLike" />
+        <result column="is_advertising" property="isAdvertising" />
+        <result column="evaluate_sum" property="evaluateSum" />
+        <result column="turnover" property="turnover" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, img_path, price, details, is_hot, is_new, is_pick, is_sexy, is_couples, is_guess_you_like, is_advertising, evaluate_sum, turnover
+    </sql>
+
+    <select id="selectByPage" resultType="com.demo.entities.Product">
+        SELECT * FROM product
+    </select>
+
+    <select id="selectByPageAndWrapper" resultType="com.demo.entities.Product">
+        SELECT * FROM product
+    </select>
+</mapper>

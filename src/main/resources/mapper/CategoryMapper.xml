@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.CategoryDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.demo.entities.Category">
+        <id column="cid" property="cid" />
+        <result column="cname" property="cname" />
+        <result column="pid" property="pid" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        cid, cname, pid
+    </sql>
+    <!--01.自关联查询-->
+         <resultMap id="selectCategoriesByPid" type="com.demo.entities.Category">
+    <id property="cid" column="cid"/>
+    <result property="cname" column="cname"/>
+    <result property="pid" column="pid"/>
+    <collection property="children" ofType="com.demo.entities.Category" select="findCategoriesByParentId" column="cid"/>
+</resultMap>
+    <select id="findCategoriesByParentId" resultMap="selectCategoriesByPid">
+       select * from category where pid=#{pid}
+ </select>
+
+</mapper>
